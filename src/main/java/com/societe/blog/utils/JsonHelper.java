@@ -39,12 +39,11 @@ public final class JsonHelper {
 
     public static Talk extractTalkFromJsonObject(String date, JsonElement jsonElement) throws ParseException {
         JsonObject jsonTalkObject = jsonElement.getAsJsonObject();
-        long id = jsonTalkObject.get("id").getAsLong();
         String time = jsonTalkObject.get("time").getAsString();
         String title = jsonTalkObject.get("title").getAsString();
         String room = jsonTalkObject.get("room").getAsString();
         String format = jsonTalkObject.get("format").getAsString();
-        return new Talk(id, ROOM.fromString(room), FORMAT.fromString(format), title, String.format("%s %s", date, time));
+        return new Talk(ROOM.fromString(room), FORMAT.fromString(format), title, String.format("%s %s", date, time));
     }
 
     public static List<Talk> extractTalksFromJson(Resource programmeResource) throws IOException, ParseException {
@@ -60,6 +59,7 @@ public final class JsonHelper {
             JsonArray tracks = jourAsJsonObject.getAsJsonArray("tracks");
             for (JsonElement track : tracks) {
                 JsonArray jsonTalks = track.getAsJsonObject().getAsJsonArray("talks");
+
                 for (JsonElement jsonTalkElement : jsonTalks) {
                     talks.add(extractTalkFromJsonObject(date, jsonTalkElement));
                 }

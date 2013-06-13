@@ -32,11 +32,11 @@ public class TalkResource {
         return Response.ok(talks).build();
     }
 
-    @Path("{programmeId}")
+    @Path("{talkId}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public Response findProgrammeById(@PathParam("programmeId") long programmeId) throws IOException, ParseException {
-        Optional<Talk> optionalTalk = talkService.findById(programmeId);
+    public Response findTalkById(@PathParam("talkId") long talkId) throws IOException, ParseException {
+        Optional<Talk> optionalTalk = talkService.findById(talkId);
         if (optionalTalk.isPresent()) {
             return Response.ok(optionalTalk.get()).build();
         } else {
@@ -45,9 +45,9 @@ public class TalkResource {
     }
 
     @DELETE
-    @Path("{programmeId}")
-    public Response deleteById(@PathParam("programmeId") long programmeId) {
-        Either<String, Void> result = talkService.removeById(programmeId);
+    @Path("{talkId}")
+    public Response deleteById(@PathParam("talkId") long talkId) {
+        Either<String, Void> result = talkService.removeById(talkId);
         if (result.isRight()) {
             return Response.status(Response.Status.NO_CONTENT).build();
         } else {

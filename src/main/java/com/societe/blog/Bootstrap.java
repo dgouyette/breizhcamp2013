@@ -16,7 +16,7 @@ public class Bootstrap {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Bootstrap.class);
 
-    protected Resource programmeResource;
+    protected Resource talkResource;
 
     @Autowired
     private TalkDao talkDao;
@@ -29,13 +29,13 @@ public class Bootstrap {
         LOGGER.debug("***                                                            ****");
         LOGGER.debug("*******************************************************************");
 
-        talkDao.save(JsonHelper.extractTalksFromJson(programmeResource));
+        talkDao.save(JsonHelper.extractTalksFromJson(talkResource));
 
 
     }
 
-    public void setProgrammeResource(Resource programmeResource) {
-        this.programmeResource = programmeResource;
+    public void setTalkResource(Resource talkResource) {
+        this.talkResource = talkResource;
     }
 }
 

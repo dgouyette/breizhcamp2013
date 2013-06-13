@@ -18,7 +18,7 @@ public interface TalkService {
 
     Collection<Talk> findTalksAboutLabs() throws IOException, ParseException;
 
-    Optional<Talk> findById(long programmeId) throws IOException, ParseException;
+    Optional<Talk> findById(long talkId) throws IOException, ParseException;
 
     Either<String, Void> removeById(long id);
 

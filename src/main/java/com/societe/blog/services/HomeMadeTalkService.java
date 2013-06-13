@@ -15,11 +15,12 @@ import java.util.List;
 public class HomeMadeTalkService extends AbstractTalkService implements TalkService {
 
     @Override
-    public Collection<Talk> findTalksToolsInAction() throws IOException, ParseException {
+    public Collection<Talk> findTalksToolsInAction() {
         Collection<Talk> allTalks = findTalks();
         List<Talk> toolsInAction = Lists.newArrayList();
+        int i = 0;
         for (Talk talk : allTalks) {
-            if (talk.getFormat().equals(FORMAT.TOOLS_IN_ACTION)) {
+            if (talk.getFormat() == FORMAT.TOOLS_IN_ACTION) {
                 toolsInAction.add(talk);
             }
         }
@@ -27,11 +28,11 @@ public class HomeMadeTalkService extends AbstractTalkService implements TalkServ
     }
 
     @Override
-    public Collection<Talk> findTalksNotToolsInAction() throws IOException, ParseException {
+    public Collection<Talk> findTalksNotToolsInAction() {
         Collection<Talk> allTalks = findTalks();
         List<Talk> notToolsInAction = Lists.newArrayList();
         for (Talk talk : allTalks) {
-            if (!talk.getFormat().equals(FORMAT.TOOLS_IN_ACTION)) {
+            if (talk.getFormat() != FORMAT.TOOLS_IN_ACTION) {
                 notToolsInAction.add(talk);
             }
         }
@@ -40,11 +41,11 @@ public class HomeMadeTalkService extends AbstractTalkService implements TalkServ
     }
 
     @Override
-    public Collection<Talk> findTalksAboutLabs() throws IOException, ParseException {
+    public Collection<Talk> findTalksAboutLabs() {
         Collection<Talk> allTalks = findTalks();
         List<Talk> notToolsInAction = Lists.newArrayList();
         for (Talk talk : allTalks) {
-            if (talk.getFormat().equals(FORMAT.LAB) || talk.getFormat().equals(FORMAT.BIGLAB)) {
+            if (talk.getFormat() == FORMAT.LAB || talk.getFormat() == FORMAT.BIGLAB) {
                 notToolsInAction.add(talk);
             }
         }
@@ -53,10 +54,10 @@ public class HomeMadeTalkService extends AbstractTalkService implements TalkServ
     }
 
     @Override
-    public Optional<Talk> findById(long programmeId) throws IOException, ParseException {
+    public Optional<Talk> findById(long talkId) throws IOException, ParseException {
         Collection<Talk> talks = findTalks();
         for (Talk talk : talks) {
-            if (talk.getId() == programmeId) {
+            if (talk.getId() == talkId) {
                 return Optional.of(talk);
             } else {
                 return Optional.absent();
@@ -64,8 +65,6 @@ public class HomeMadeTalkService extends AbstractTalkService implements TalkServ
         }
         return Optional.absent();
     }
-
-
 
 
 }

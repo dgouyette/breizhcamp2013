@@ -4,7 +4,7 @@ import com.google.common.base.Predicate;
 import com.societe.blog.domain.FORMAT;
 import com.societe.blog.domain.Talk;
 
-public final class ProgrammeHelper {
+public final class TalkHelper {
 
     public static Predicate<Talk> TALK_ABOUT_TOOLS_IN_ACTION = new Predicate<Talk>() {
         @Override
@@ -28,7 +28,7 @@ public final class ProgrammeHelper {
     };
 
 
-    private ProgrammeHelper() {
+    private TalkHelper() {
     }
 
 }

@@ -29,7 +29,7 @@ public class TalkServiceTest {
     private static final int EXPECTED_TALKS_LAB_COUNT = 5;
 
     @Autowired
-    @Qualifier("functionalProgrammeService")
+    @Qualifier("homeMadeTalkService")
     private TalkService talkService;
 
     @Test

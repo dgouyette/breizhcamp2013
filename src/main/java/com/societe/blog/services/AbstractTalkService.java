@@ -16,8 +16,9 @@ public abstract class AbstractTalkService {
     @Autowired
     protected TalkDao talkDao;
 
-    public Collection<Talk> findTalks() throws IOException, ParseException {
-        return talkDao.findAll();
+    public Collection<Talk> findTalks() {
+        Collection<Talk> all = talkDao.findAll();
+        return all;
     }
 
     public Either<String, Void> removeById(long id) {

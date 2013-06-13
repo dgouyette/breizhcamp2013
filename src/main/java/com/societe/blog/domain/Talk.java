@@ -39,8 +39,7 @@ public class Talk implements Serializable {
     public Talk() {
     }
 
-    public Talk(long id, ROOM room, FORMAT format, String title, String date) throws ParseException {
-        this.id = id;
+    public Talk(ROOM room, FORMAT format, String title, String date) throws ParseException {
         this.room = room;
         this.format = format;
         this.title = title;

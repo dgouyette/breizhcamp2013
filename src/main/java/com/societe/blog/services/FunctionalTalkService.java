@@ -4,7 +4,7 @@ import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
 import com.societe.blog.domain.Talk;
-import com.societe.blog.utils.ProgrammeHelper;
+import com.societe.blog.utils.TalkHelper;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -21,27 +21,27 @@ public class FunctionalTalkService extends AbstractTalkService implements TalkSe
 
     @Override
     public Collection<Talk> findTalksToolsInAction() throws IOException, ParseException {
-        return filter(findTalks(), ProgrammeHelper.TALK_ABOUT_TOOLS_IN_ACTION);
+        return filter(findTalks(), TalkHelper.TALK_ABOUT_TOOLS_IN_ACTION);
 
     }
 
     @Override
     public Collection<Talk> findTalksNotToolsInAction() throws IOException, ParseException {
-        return filter(findTalks(), not(ProgrammeHelper.TALK_ABOUT_TOOLS_IN_ACTION));
+        return filter(findTalks(), not(TalkHelper.TALK_ABOUT_TOOLS_IN_ACTION));
     }
 
     @Override
     public Collection<Talk> findTalksAboutLabs() throws IOException, ParseException {
-        return filter(findTalks(), or(ProgrammeHelper.BIGLAB, ProgrammeHelper.LAB));
+        return filter(findTalks(), or(TalkHelper.BIGLAB, TalkHelper.LAB));
     }
 
     @Override
-    public Optional<Talk> findById(final long programmeId) throws IOException, ParseException {
+    public Optional<Talk> findById(final long talkId) throws IOException, ParseException {
 
         Predicate<Talk> predicate_by_id = new Predicate<Talk>() {
             @Override
             public boolean apply(Talk talk) {
-                return (talk.getId() == programmeId);
+                return (talk.getId() == talkId);
             }
         };
 
