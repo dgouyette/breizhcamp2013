@@ -31,8 +31,7 @@ public class TalkDao {
 
     public void save(Collection<Talk> talks) {
         for (Talk t : talks) {
-            LOGGER.info("create {}", t);
-            em.merge(t);
+            em.persist(t);
         }
     }
 
