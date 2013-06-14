@@ -11,9 +11,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PROPERTY)
@@ -32,19 +30,19 @@ public class Talk implements Serializable {
 
     private String title;
 
-    private Date date;
+    private String url;
 
     private transient SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy HH:mm");
 
     public Talk() {
     }
 
-    public Talk(ROOM room, FORMAT format, String title, String date) throws ParseException {
+
+    public Talk(ROOM room, FORMAT format, String title, String url) {
         this.room = room;
         this.format = format;
         this.title = title;
-        this.date = sdf.parse(date);
-
+        this.url = url;
     }
 
     public Long getId() {
@@ -79,12 +77,12 @@ public class Talk implements Serializable {
         this.title = title;
     }
 
-    public Date getDate() {
-        return date;
+    public String getUrl() {
+        return url;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String toString() {

@@ -2,8 +2,6 @@ package com.societe.blog.dao;
 
 import com.google.common.base.Optional;
 import com.societe.blog.domain.Talk;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +13,6 @@ import java.util.Collection;
 @Transactional
 public class TalkDao {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TalkDao.class);
 
     private EntityManager em;
 
@@ -26,7 +23,6 @@ public class TalkDao {
 
     public Optional<Talk> findById(long id) {
         return Optional.fromNullable(em.find(Talk.class, id));
-
     }
 
     public void save(Collection<Talk> talks) {

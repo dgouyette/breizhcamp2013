@@ -25,12 +25,6 @@ public class TalkResource {
     @Qualifier("functionalTalkService")
     private TalkService talkService;
 
-    @GET
-    @Produces({MediaType.APPLICATION_JSON})
-    public Response findAll() throws IOException, ParseException {
-        Collection<Talk> talks = talkService.findTalks();
-        return Response.ok(talks).build();
-    }
 
     @Path("{talkId}")
     @GET
@@ -43,6 +37,15 @@ public class TalkResource {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
+
+
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response findAll() throws IOException, ParseException {
+        Collection<Talk> talks = talkService.findTalks();
+        return Response.ok(talks).build();
+    }
+
 
     @DELETE
     @Path("{talkId}")

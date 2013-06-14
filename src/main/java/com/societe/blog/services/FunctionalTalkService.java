@@ -1,8 +1,6 @@
 package com.societe.blog.services;
 
 import com.google.common.base.Optional;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Lists;
 import com.societe.blog.domain.Talk;
 import com.societe.blog.utils.TalkHelper;
 import org.springframework.stereotype.Component;
@@ -19,6 +17,12 @@ import static com.google.common.collect.Collections2.filter;
 public class FunctionalTalkService extends AbstractTalkService implements TalkService {
 
 
+    //passe plat
+    @Override
+    public Optional<Talk> findById(final long talkId) throws IOException, ParseException {
+        return talkDao.findById(talkId);
+    }
+
     @Override
     public Collection<Talk> findTalksToolsInAction() throws IOException, ParseException {
         return filter(findTalks(), TalkHelper.TALK_ABOUT_TOOLS_IN_ACTION);
@@ -34,29 +38,6 @@ public class FunctionalTalkService extends AbstractTalkService implements TalkSe
     public Collection<Talk> findTalksAboutLabs() throws IOException, ParseException {
         return filter(findTalks(), or(TalkHelper.BIGLAB, TalkHelper.LAB));
     }
-
-    @Override
-    public Optional<Talk> findById(final long talkId) throws IOException, ParseException {
-
-        Predicate<Talk> predicate_by_id = new Predicate<Talk>() {
-            @Override
-            public boolean apply(Talk talk) {
-                return (talk.getId() == talkId);
-            }
-        };
-
-
-        Collection<Talk> filter = filter(findTalks(), predicate_by_id);
-
-        if (filter.size() == 1) {
-            return Optional.of(Lists.newArrayList(filter).get(0));
-        } else {
-            return Optional.absent();
-        }
-
-    }
-
-
 
 
 }
